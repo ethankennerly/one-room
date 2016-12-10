@@ -3,6 +3,7 @@ DONE
 	Theme:  One Room
 	I played Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
 	Jennifer quit Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
+	See grid layout.
 
 TODO
 
