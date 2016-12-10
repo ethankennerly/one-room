@@ -29,8 +29,12 @@ TODO
 	Bigger rooms multiply money.
 	Hint shows next letter of next word until all words.
 	Submit to Ludum Dare.
+	Color palette.
+	Crisp font.
 	See room.
 	See dirty tiles of letters.
 	See clean tiles when letters cleared.
+	Name a room.
 	Hear sounds.
+	Auto resize letter cells in grid.
 
