@@ -1,10 +1,36 @@
 DONE
+
 	Theme:  One Room
 	I played Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
 	Jennifer quit Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
 
 TODO
 
-	I play 1 minute.
+	See grid of letters.
+	Spell word.
+	Spell two words.
+	Mouse down to select letter.
+	Mouse up to submit word.
+	If word not in list then show message.
+	Play 1 minute.
 	Jennifer plays 1 minute.
+	Restart.
+	Select room.
+	Grid of rooms.
+	Spelling word increases money.
+	Selecting letter costs money.
+	Selecting hint costs money.
+	Selecting room costs money.
+	Selecting 3 or more letters costs money.
+	If not enough money, item not available.
+	If not enough money for anything, message You're broke.
+	2x2, 3x3, 3x4, 4x5, 4x6
+	Bigger rooms cost more.
+	Bigger rooms multiply money.
+	Hint shows next letter of next word until all words.
 	Submit to Ludum Dare.
+	See room.
+	See dirty tiles of letters.
+	See clean tiles when letters cleared.
+	Hear sounds.
+
