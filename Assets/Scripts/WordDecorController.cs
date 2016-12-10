@@ -6,6 +6,7 @@ namespace Finegamedesign.WordDecor
 	{
 		public WordDecorModel model = new WordDecorModel();
 		public WordDecorView view;
+		public ButtonController buttons = new ButtonController();
 
 		public void Setup()
 		{
@@ -15,24 +16,40 @@ namespace Finegamedesign.WordDecor
 			view.cells = SceneNodeView.GetChildren(view.grid);
 			int length = DataUtil.Length(view.cells);
 			DataUtil.Clear(view.letterTexts);
+			DataUtil.Clear(view.letterButtons);
 			for (int index = 0; index < length; index++)
 			{
-				var child = SceneNodeView.GetChild(view.cells[index], "LetterButton/Text");
-				view.letterTexts.Add(child);
+				var button = SceneNodeView.GetChild(view.cells[index], "LetterButton");
+				view.letterButtons.Add(button);
+				buttons.view.Listen(button);
+				var text = SceneNodeView.GetChild(view.cells[index], "LetterButton/Text");
+				view.letterTexts.Add(text);
 			}
 		}
 
 		public void Update(float deltaSeconds)
 		{
+			UpdateInput();
 			UpdateLetters();
 		}
 
-		public void UpdateLetters()
+		private void UpdateInput()
+		{
+			buttons.Update();
+			if (buttons.isAnyNow)
+			{
+				int letterIndex = view.letterButtons.IndexOf(buttons.view.target);
+				model.Select(letterIndex);
+			}
+		}
+
+		private void UpdateLetters()
 		{
 			int length = DataUtil.Length(model.letters);
 			for (int index = 0; index < length; index++)
 			{
 				TextView.SetText(view.letterTexts[index], model.letters[index]);
+				SceneNodeView.SetVisible(view.letterButtons[index], model.isVisibles[index]);
 			}
 		}
 	}

@@ -4,10 +4,10 @@ DONE
 	I played Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
 	Jennifer quit Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
 	See grid layout.
+	See grid of letters: BEDS.
 
 TODO
 
-	See grid of letters.
 	Spell word.
 	Spell two words.
 	Mouse down to select letter.

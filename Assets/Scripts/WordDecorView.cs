@@ -10,6 +10,7 @@ namespace Finegamedesign.WordDecor
 		public WordDecorController controller = new WordDecorController();
 		public List<GameObject> cells;
 		public List<GameObject> letterTexts = new List<GameObject>();
+		public List<GameObject> letterButtons = new List<GameObject>();
 
 		void Start()
 		{
