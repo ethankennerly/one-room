@@ -8,6 +8,10 @@ REFERENCE GAMES
 		http://www.girlsgogames.com/game/mommy-home-decoration
 	Room Tycoon:  Buy and sell apartments.  Mansion Impossible + Fuse Clues.
 		http://www.mansionimpossiblegame.com/
+	Word Tycoon
+		https://itunes.apple.com/us/app/word-tycoon/id1128213556?mt=8
+	Letter Tycoon
+		https://boardgamegeek.com/video/79445/letter-tycoon/dice-tower-reviews-letter-tycoon-w-ryan-metzler
 	Ant Defense:  Place borax between ants and food.  Ant Buster.
 		http://www.addictinggames.com/strategy-games/antbuster.jsp
 	House Flip
@@ -59,4 +63,87 @@ Stage 1 button.  No response.
 Quits.
 
 
+
+Sat, Dec 10, 2016  9:15:59 AM
+
+WALLPAPER
+CHAIR
+BED
+SHEETS
+PILLOW
+PLANT
+PICTURE
+
+WordBrain Themes + House Flip
+
+WordTycoon
+WordRoom
+Make money.
+Money decreases while finding words.
+Sell the decorated room.
+Hint costs money.
+
+The decorated room lists its contents or improvements:
+
+WALLPAPER
+CHAIR
+BED
+SHEETS
+PILLOW
+PLANT
+PICTURE
+
+Grids:
+
+ED
+BS
+
+SHE
+STE
+
+BLL
+EIO
+DPW
+
+WAL
+APL
+PER
+
+HKS
+ACE
+IRD
+
+Finishing 5 sets, opens next room.
+
+2x2, 3x3, 4x4.
+
+Bigger rooms add more money.
+
+Buy condos and sell them.
+Hint cost money.
+Your money enables you to unlock the next room.
+If you don't unlock the next room,
+you can buy back the previous room and replay.
+Replaying is useless since you already know the answer.
+
+
+
+Sat, Dec 10, 2016  9:56:56 AM
+
+Condo Tycoon
+
+Side view of condos:
+
+	9!@
+	678
+	345
+	012
+
+Price increases or decreases.
+Each tier costs more.
+One minute.
+Sell all before minute is up.
+At start can only afford one at lowest tier.
+Fluctuate prices.
+Bottom row shows price going up or down and has simple evolution.
 
