@@ -2,6 +2,7 @@ using Finegamedesign.Utils;
 
 namespace Finegamedesign.WordDecor
 {
+	[System.Serializable]
 	public sealed class WordDecorController
 	{
 		public WordDecorModel model = new WordDecorModel();
@@ -46,7 +47,7 @@ namespace Finegamedesign.WordDecor
 			}
 			UpdateGridPanel();
 			UpdateLetters();
-			UpdateHelp();
+			UpdateText();
 		}
 
 		private void UpdateInput()
@@ -84,9 +85,10 @@ namespace Finegamedesign.WordDecor
 			}
 		}
 
-		private void UpdateHelp()
+		private void UpdateText()
 		{
 			TextView.SetText(view.helpText, model.helpText);
+			TextView.SetText(view.scoreText, model.referee.score.ToString());
 		}
 	}
 }

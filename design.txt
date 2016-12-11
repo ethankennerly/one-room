@@ -149,6 +149,16 @@ DECORATE THIS ROOM
 SPELL THE DECORATION
 
 
+Score:
+
+Start:  100
+Each second:  -1
+Each letter:  -10
+Each letter in word:  column x rows x 10
+Each hint:  -100
+
+
+
 
 Sat, Dec 10, 2016  9:56:56 AM
 

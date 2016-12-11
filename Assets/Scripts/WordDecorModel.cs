@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Finegamedesign.WordDecor
 {
+	[System.Serializable]
 	public sealed class WordDecorModel
 	{
 		public string empty = ".";
@@ -26,11 +27,13 @@ namespace Finegamedesign.WordDecor
 		public bool isCorrect;
 		private int wordIndex = -1;
 		public string helpText = "";
+		public Referee referee = new Referee();
 
 		public void Setup()
 		{
 			PopulateGrid();
-			helpText = "SPELL THE DECORATION";
+			helpText = "SPELL THE DECORATION FOR THIS ROOM";
+			referee.Setup();
 		}
 
 		public void PopulateGrid()
@@ -52,6 +55,7 @@ namespace Finegamedesign.WordDecor
 				isVisibles.Add(true);
 			}
 			ResetSelected();
+			referee.scorePerCorrect = 10 * columnCount * rowCount;
 		}
 
 		private void ResetSelected()
@@ -62,6 +66,7 @@ namespace Finegamedesign.WordDecor
 
 		public void Select(int letterIndex)
 		{
+			referee.Select();
 			if (0 <= letterIndex)
 			{
 				helpText = "";
@@ -93,12 +98,22 @@ namespace Finegamedesign.WordDecor
 			isNext = false;
 			if (isCorrect)
 			{
+				int wordLength = DataUtil.Length(selectedWord);
+				referee.Correct(wordLength);
 				helpText = selectedWord + ", NICE!";
 				DataUtil.RemoveAt(words, wordIndex);
 				if (DataUtil.Length(words) <= 0)
 				{
 					levelIndex++;
 					isNext = levelIndex < levelCount;
+					referee.isUpdateSeconds = levelIndex < levelCount - 1;
+					if (!referee.isUpdateSeconds)
+					{
+						helpText = "YOUR VOCABULARY OF DECORATING EARNED $" + referee.score + ",000!";
+					}
+				}
+				else
+				{
 				}
 			}
 			else
@@ -117,6 +132,7 @@ namespace Finegamedesign.WordDecor
 
 		public void Update(float deltaSeconds)
 		{
+			referee.Update(deltaSeconds);
 			if (isNext)
 			{
 				PopulateGrid();
