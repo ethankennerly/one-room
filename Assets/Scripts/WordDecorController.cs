@@ -13,6 +13,14 @@ namespace Finegamedesign.WordDecor
 			string csv = StringUtil.Read("grids.csv");
 			model.levels = StringUtil.ParseCsv(csv);
 			model.Setup();
+			buttons.view.Listen(view.submitButton);
+			PopulateGrid();
+		}
+
+		public void PopulateGrid()
+		{
+			view.grids = SceneNodeView.GetChildren(view.gridsParent);
+			view.grid = SceneNodeView.GetChild(view.gridsParent, model.gridName);
 			view.cells = SceneNodeView.GetChildren(view.grid);
 			int length = DataUtil.Length(view.cells);
 			DataUtil.Clear(view.letterTexts);
@@ -30,6 +38,13 @@ namespace Finegamedesign.WordDecor
 		public void Update(float deltaSeconds)
 		{
 			UpdateInput();
+			model.Update(deltaSeconds);
+			if (model.isNext)
+			{
+				model.isNext = false;
+				PopulateGrid();
+			}
+			UpdateGridPanel();
 			UpdateLetters();
 		}
 
@@ -38,6 +53,10 @@ namespace Finegamedesign.WordDecor
 			buttons.Update();
 			if (buttons.isAnyNow)
 			{
+				if (view.submitButton == buttons.view.target)
+				{
+					model.Submit();
+				}
 				int letterIndex = view.letterButtons.IndexOf(buttons.view.target);
 				model.Select(letterIndex);
 			}
@@ -50,6 +69,17 @@ namespace Finegamedesign.WordDecor
 			{
 				TextView.SetText(view.letterTexts[index], model.letters[index]);
 				SceneNodeView.SetVisible(view.letterButtons[index], model.isVisibles[index]);
+			}
+		}
+
+		private void UpdateGridPanel()
+		{
+			int length = DataUtil.Length(view.grids);
+			for (int index = 0; index < length; index++)
+			{
+				var grid = view.grids[index];
+				bool isVisible = view.grid == grid;
+				SceneNodeView.SetVisible(grid, isVisible);
 			}
 		}
 	}

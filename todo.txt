@@ -5,19 +5,22 @@ DONE
 	Jennifer quit Mansion Impossible, Ant Buster, Cute Baby Puppy Care.
 	See grid layout.
 	See grid of letters: BEDS.
+	Tap letter. Letter disappears.
 
 TODO
 
-	Spell word.
+	Drag over letter.  Letter selected.
+		Mouse down to select letter.
+		Mouse up to submit word.
+	If not a target word, then show letters again.
+	Spell words.
 	Spell two words.
-	Mouse down to select letter.
-	Mouse up to submit word.
 	If word not in list then show message.
 	Play 1 minute.
 	Jennifer plays 1 minute.
+	2x2, 3x3, 3x4, 4x5, 4x6
+	After complete all grids show you win.
 	Restart.
-	Select room.
-	Grid of rooms.
 	Spelling word increases money.
 	Selecting letter costs money.
 	Selecting hint costs money.
@@ -25,7 +28,10 @@ TODO
 	Selecting 3 or more letters costs money.
 	If not enough money, item not available.
 	If not enough money for anything, message You're broke.
-	2x2, 3x3, 3x4, 4x5, 4x6
+	Spell word.  Show word spelled.  Animate reward.
+	Animate reward.  See next.
+	Select room.
+	Grid of rooms.
 	Bigger rooms cost more.
 	Bigger rooms multiply money.
 	Hint shows next letter of next word until all words.
