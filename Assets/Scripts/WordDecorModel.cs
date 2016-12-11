@@ -20,6 +20,7 @@ namespace Finegamedesign.WordDecor
 		public List<string> selectedLetters = new List<string>();
 		public List<int> selectedIndexes = new List<int>();
 		public List<string> words;
+		public string wordsOriginally;
 		public int columnCount = -1;
 		public int rowCount = -1;
 		public string gridName;
@@ -46,6 +47,7 @@ namespace Finegamedesign.WordDecor
 			rowCount = StringUtil.ParseInt(row[rowsColumn]);
 			gridName = "GridPanel_" + columnCount + "x" + rowCount;
 			words = DataUtil.Split(row[wordsColumn], ";");
+			wordsOriginally = DataUtil.Replace(row[wordsColumn], ";", " ");
 			string grid = row[gridColumn];
 			string letterText = DataUtil.Replace(grid, ";", "");
 			letters = DataUtil.SplitString(letterText);
@@ -55,7 +57,7 @@ namespace Finegamedesign.WordDecor
 				isVisibles.Add(true);
 			}
 			ResetSelected();
-			referee.scorePerCorrect = 10 * columnCount * rowCount;
+			referee.MultiplyDifficulty(columnCount * rowCount);
 		}
 
 		private void ResetSelected()
@@ -69,7 +71,6 @@ namespace Finegamedesign.WordDecor
 			referee.Select();
 			if (0 <= letterIndex)
 			{
-				helpText = "";
 				isVisibles[letterIndex] = !isVisibles[letterIndex];
 				if (!isVisibles[letterIndex])
 				{
@@ -77,6 +78,7 @@ namespace Finegamedesign.WordDecor
 					selectedLetters.Add(letter);
 					selectedIndexes.Add(letterIndex);
 					UpdateIsCorrect();
+					helpText = "COST $" + referee.selectProfit + "K FOR \"" + selectedWord + "\"";
 					if (isCorrect)
 					{
 						Submit();
@@ -94,26 +96,42 @@ namespace Finegamedesign.WordDecor
 
 		public bool Submit()
 		{
-			UpdateIsCorrect();
 			isNext = false;
+			int wordLength = DataUtil.Length(selectedWord);
+			if (wordLength < 0)
+			{
+				if (referee.isUpdateSeconds)
+				{
+					helpText = "SPELL THE DECORATION THEN TAP SUBMIT";
+				}
+				return isNext;
+			}
+			UpdateIsCorrect();
 			if (isCorrect)
 			{
-				int wordLength = DataUtil.Length(selectedWord);
 				referee.Correct(wordLength);
-				helpText = selectedWord + ", NICE!";
+				if (0 < referee.difficultyMultiplier)
+				{
+					helpText = "YOUR " + selectedWord + " PROFITED $" + referee.correctProfit + "K!";
+				}
+				else
+				{
+					helpText = "YOUR DECORATING EARNED $" + referee.score + "K!";
+				}
 				DataUtil.RemoveAt(words, wordIndex);
 				if (DataUtil.Length(words) <= 0)
 				{
 					levelIndex++;
 					isNext = levelIndex < levelCount;
 					referee.isUpdateSeconds = levelIndex < levelCount - 1;
-					if (!referee.isUpdateSeconds)
+					if (referee.isUpdateSeconds)
 					{
-						helpText = "YOUR DECORATING EARNED $" + referee.score + ",000!";
+						// helpText = selectedWord + ", NICE!";
 					}
-				}
-				else
-				{
+					else
+					{
+						helpText = "YOUR DECORATING EARNED $" + referee.score + "K!";
+					}
 				}
 			}
 			else

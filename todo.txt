@@ -16,10 +16,10 @@ DONE
 	Selecting letter costs money.
 	Play 1 minute.
 	Jennifer played 6 grids.
+	2016-12-10 You Win.  Jennifer expects to take no action.
 
 TODO
 
-	2016-12-10 You Win.  Jennifer expects to take no action.
 	2x2, 3x3, 3x4, 4x5, 4x6
 	Drag over letter.  Letter selected.
 		Mouse down to select letter.
@@ -40,6 +40,8 @@ TODO
 	See clean tiles when letters cleared.
 	Name a room.
 	Hear sounds.
+	2016-12-10 Jennifer Russ feels comfortable inputting.
+		Asks to type.
 	If not enough money, room not available.
 	If not enough money for anything, message You're broke.
 	Selecting room costs money.
