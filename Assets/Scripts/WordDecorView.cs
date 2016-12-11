@@ -13,6 +13,7 @@ namespace Finegamedesign.WordDecor
 		public List<GameObject> cells;
 		public List<GameObject> letterTexts = new List<GameObject>();
 		public List<GameObject> letterButtons = new List<GameObject>();
+		public List<GameObject> letterBackgrounds = new List<GameObject>();
 		public GameObject submitButton;
 		public GameObject hintButton;
 		public GameObject hintLabel;

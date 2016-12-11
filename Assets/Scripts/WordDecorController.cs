@@ -34,6 +34,8 @@ namespace Finegamedesign.WordDecor
 				buttons.view.Listen(button);
 				var text = SceneNodeView.GetChild(view.cells[index], "LetterButton/Text");
 				view.letterTexts.Add(text);
+				var background = SceneNodeView.GetChild(view.cells[index], "Background");
+				view.letterBackgrounds.Add(background);
 			}
 		}
 
@@ -83,6 +85,7 @@ namespace Finegamedesign.WordDecor
 				if (index < DataUtil.Length(view.letterButtons))
 				{
 					SceneNodeView.SetVisible(view.letterButtons[index], model.isVisibles[index]);
+					SceneNodeView.SetVisible(view.letterBackgrounds[index], model.isVisibles[index]);
 				}
 			}
 		}
