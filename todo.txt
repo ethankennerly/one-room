@@ -10,13 +10,13 @@ DONE
 	After complete all grids show you win.
 	Spell words.
 	Spell two words.
+	If word not in list then show message.
 
 TODO
 
-	If word not in list then show message.
+	2x2, 3x3, 3x4, 4x5, 4x6
 	Play 1 minute.
 	Jennifer plays 1 minute.
-	2x2, 3x3, 3x4, 4x5, 4x6
 	Restart.
 	Spelling word increases money.
 	Selecting letter costs money.
