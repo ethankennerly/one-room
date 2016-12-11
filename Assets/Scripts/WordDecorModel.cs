@@ -25,10 +25,12 @@ namespace Finegamedesign.WordDecor
 		public bool isNext;
 		public bool isCorrect;
 		private int wordIndex = -1;
+		public string helpText = "";
 
 		public void Setup()
 		{
 			PopulateGrid();
+			helpText = "SPELL THE DECORATION";
 		}
 
 		public void PopulateGrid()
@@ -49,6 +51,11 @@ namespace Finegamedesign.WordDecor
 			{
 				isVisibles.Add(true);
 			}
+			ResetSelected();
+		}
+
+		private void ResetSelected()
+		{
 			DataUtil.Clear(selectedIndexes);
 			DataUtil.Clear(selectedLetters);
 		}
@@ -57,6 +64,7 @@ namespace Finegamedesign.WordDecor
 		{
 			if (0 <= letterIndex)
 			{
+				helpText = "";
 				isVisibles[letterIndex] = !isVisibles[letterIndex];
 				if (!isVisibles[letterIndex])
 				{
@@ -85,6 +93,7 @@ namespace Finegamedesign.WordDecor
 			isNext = false;
 			if (isCorrect)
 			{
+				helpText = selectedWord + ", NICE!";
 				DataUtil.RemoveAt(words, wordIndex);
 				if (DataUtil.Length(words) <= 0)
 				{
@@ -94,15 +103,15 @@ namespace Finegamedesign.WordDecor
 			}
 			else
 			{
+				helpText = "TRY A DIFFERENT DECORATION THAN " + selectedWord;
 				int length = DataUtil.Length(selectedIndexes);
 				for (int index = 0; index < length; index++)
 				{
 					int selectedIndex = selectedIndexes[index];
 					isVisibles[selectedIndex] = true;
 				}
-				DataUtil.Clear(selectedIndexes);
-				DataUtil.Clear(selectedLetters);
 			}
+			ResetSelected();
 			return isNext;
 		}
 

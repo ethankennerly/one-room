@@ -46,6 +46,7 @@ namespace Finegamedesign.WordDecor
 			}
 			UpdateGridPanel();
 			UpdateLetters();
+			UpdateHelp();
 		}
 
 		private void UpdateInput()
@@ -81,6 +82,11 @@ namespace Finegamedesign.WordDecor
 				bool isVisible = view.grid == grid;
 				SceneNodeView.SetVisible(grid, isVisible);
 			}
+		}
+
+		private void UpdateHelp()
+		{
+			TextView.SetText(view.helpText, model.helpText);
 		}
 	}
 }

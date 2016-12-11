@@ -5,6 +5,7 @@ namespace Finegamedesign.WordDecor
 {
 	public sealed class WordDecorView : MonoBehaviour
 	{
+		public List<GameObject> grids = new List<GameObject>();
 		public GameObject grid;
 		public GameObject gridsParent;
 		public GameObject cellTemplate;
@@ -13,7 +14,7 @@ namespace Finegamedesign.WordDecor
 		public List<GameObject> letterTexts = new List<GameObject>();
 		public List<GameObject> letterButtons = new List<GameObject>();
 		public GameObject submitButton;
-		public List<GameObject> grids = new List<GameObject>();
+		public GameObject helpText;
 
 		void Start()
 		{
