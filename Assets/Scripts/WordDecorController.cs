@@ -94,8 +94,10 @@ namespace Finegamedesign.WordDecor
 
 		private void UpdateText()
 		{
+			SceneNodeView.SetVisible(view.hud, model.referee.isActive || model.referee.isOver);
+			SceneNodeView.SetVisible(view.hintButton, false && model.referee.isActive);
 			TextView.SetText(view.helpText, model.helpText);
-			TextView.SetText(view.levelText, model.levelText);
+			TextView.SetText(view.levelText, model.referee.levelText);
 			TextView.SetText(view.scoreText, model.referee.score.ToString());
 		}
 	}

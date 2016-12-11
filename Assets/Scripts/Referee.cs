@@ -1,7 +1,16 @@
 namespace Finegamedesign.Utils
 {
+	[System.Serializable]
 	public sealed class Referee
 	{
+		public int levelNumber = 1;
+		public int levelDisplay = 1;
+		public int tutorLevel = 2;
+		public int levelCount = -1;
+		public string levelText = "";
+		public bool isActive = false;
+		public bool isOver = false;
+
 		public int correctProfit = 0;
 		public int selectProfit = 0;
 		public int score = 0;
@@ -12,21 +21,31 @@ namespace Finegamedesign.Utils
 		public int scorePerHint = -100;
 		public int scorePerCorrect = 20;
 		public int difficultyMultiplier = 1;
-		public bool isUpdateSeconds = true;
 		public float duration = 1.0f;
 		public float elapsedSeconds = 0.0f;
 
 		public void Correct(int comboMultiplier)
 		{
-			score += scorePerCorrect * comboMultiplier * difficultyMultiplier;
-			correctProfit = score - scoreBeforeCorrect;
-			scoreBeforeCorrect = score;
+			if (isActive)
+			{
+				score += scorePerCorrect * comboMultiplier * difficultyMultiplier;
+				correctProfit = score - scoreBeforeCorrect;
+				scoreBeforeCorrect = score;
+			}
 		}
 
 		public void Select()
 		{
-			score += scorePerSelect * difficultyMultiplier;
-			selectProfit = score - scoreBeforeCorrect;
+			if (isActive)
+			{
+				score += scorePerSelect * difficultyMultiplier;
+				selectProfit = score - scoreBeforeCorrect;
+			}
+		}
+
+		public void Hint()
+		{
+			score += scorePerHint * difficultyMultiplier;
 		}
 
 		public void Setup()
@@ -37,7 +56,7 @@ namespace Finegamedesign.Utils
 
 		public void Update(float deltaSeconds)
 		{
-			if (isUpdateSeconds)
+			if (isActive)
 			{
 				elapsedSeconds += deltaSeconds;
 				if (duration <= elapsedSeconds)
@@ -50,7 +69,8 @@ namespace Finegamedesign.Utils
 
 		public void MultiplyDifficulty(int difficulty)
 		{
-			if (isUpdateSeconds)
+			Populate();
+			if (isActive)
 			{
 				difficultyMultiplier = difficulty;
 			}
@@ -58,6 +78,20 @@ namespace Finegamedesign.Utils
 			{
 				difficultyMultiplier = 0;
 			}
+		}
+
+		public void Populate()
+		{
+			isOver = levelCount < levelNumber;
+			levelDisplay = isOver ? levelCount : levelNumber;
+			levelText = levelDisplay + " of " + levelCount;
+			isActive = tutorLevel < levelNumber && levelNumber <= levelCount;
+		}
+
+		public void LevelUp()
+		{
+			levelNumber++;
+			Populate();
 		}
 	}
 }

@@ -8,8 +8,6 @@ namespace Finegamedesign.WordDecor
 	{
 		public string empty = ".";
 		public string[][] levels;
-		public int levelIndex = 1;
-		public int levelCount = -1;
 		public List<string> letters = new List<string>();
 		public List<bool> isVisibles = new List<bool>();
 		public int columnsColumn = 1;
@@ -30,10 +28,12 @@ namespace Finegamedesign.WordDecor
 		private int wordIndex = -1;
 		public string helpText = "";
 		public Referee referee = new Referee();
-		public string levelText = "";
+		public int tutorLevel = 2;
 
 		public void Setup()
 		{
+			referee.levelNumber = 1;
+			referee.levelCount = DataUtil.Length(levels) - 2;
 			PopulateGrid();
 			helpText = "SPELL THIS ROOM'S DECORATION";
 			referee.Setup();
@@ -43,9 +43,7 @@ namespace Finegamedesign.WordDecor
 		{
 			DataUtil.Clear(letters);
 			DataUtil.Clear(isVisibles);
-			levelCount = DataUtil.Length(levels) - 2;
-			levelText = levelIndex + " of " + levelCount;
-			string[] row = levels[levelIndex];
+			string[] row = levels[referee.levelNumber];
 			columnCount = StringUtil.ParseInt(row[columnsColumn]);
 			rowCount = StringUtil.ParseInt(row[rowsColumn]);
 			gridName = "GridPanel_" + columnCount + "x" + rowCount;
@@ -60,14 +58,7 @@ namespace Finegamedesign.WordDecor
 				isVisibles.Add(true);
 			}
 			ResetSelected();
-			if (levelIndex <= 2)
-			{
-				referee.MultiplyDifficulty(1);
-			}
-			else
-			{
-				referee.MultiplyDifficulty(columnCount * rowCount);
-			}
+			referee.MultiplyDifficulty(columnCount * rowCount);
 		}
 
 		private void ResetSelected()
@@ -90,7 +81,14 @@ namespace Finegamedesign.WordDecor
 					selectedIndexes.Add(letterIndex);
 					isSelected = true;
 					UpdateIsCorrect();
-					helpText = "COST $" + referee.selectProfit + " FOR \"" + selectedWord + "\"";
+					if (referee.isActive)
+					{
+						helpText = "COST $" + referee.selectProfit + " FOR \"" + selectedWord + "\"";
+					}
+					else
+					{
+						helpText = selectedWord;
+					}
 					if (isCorrect)
 					{
 						Submit();
@@ -112,10 +110,6 @@ namespace Finegamedesign.WordDecor
 			int wordLength = DataUtil.Length(selectedWord);
 			if (wordLength < 0)
 			{
-				if (referee.isUpdateSeconds)
-				{
-					helpText = "SPELL THE DECORATION THEN TAP SUBMIT";
-				}
 				return isNext;
 			}
 			UpdateIsCorrect();
@@ -123,27 +117,26 @@ namespace Finegamedesign.WordDecor
 			if (isCorrect)
 			{
 				referee.Correct(wordLength);
-				if (levelIndex <= levelCount)
+				if (referee.isActive)
 				{
 					helpText = "YOUR " + selectedWord + " PROFITED $" + referee.correctProfit + "!";
 				}
-				else
+				else if (referee.isOver)
 				{
 					helpText = "YOUR DECORATING EARNED $" + referee.score + "!";
 				}
 				DataUtil.RemoveAt(words, wordIndex);
 				if (DataUtil.Length(words) <= 0)
 				{
-					levelIndex++;
-					isNext = levelIndex <= levelCount;
-					referee.isUpdateSeconds = levelIndex < levelCount;
-					if (referee.isUpdateSeconds)
-					{
-						// helpText = selectedWord + ", NICE!";
-					}
-					else
+					isNext = !referee.isOver;
+					referee.LevelUp();
+					if (referee.isOver)
 					{
 						helpText = "YOUR DECORATING EARNED $" + referee.score + "!";
+					}
+					else if (!referee.isActive)
+					{
+						helpText = "SPELL THIS ROOM'S DECORATION";
 					}
 				}
 			}

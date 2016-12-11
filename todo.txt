@@ -23,9 +23,11 @@ DONE
 
 TODO
 
-	Hint shows next letter of next word until all words.
-	Selecting hint costs money.
+	Hint selects next letter of next word.
+	Read selecting hint costs money by difficulty.
+	Play WebGL and Android.
 	Submit to Ludum Dare.
+	Jennifer plays on Android Phone.
 	Animate reward.  See next.
 	Select room.
 	Grid of rooms.

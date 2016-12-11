@@ -14,9 +14,11 @@ namespace Finegamedesign.WordDecor
 		public List<GameObject> letterTexts = new List<GameObject>();
 		public List<GameObject> letterButtons = new List<GameObject>();
 		public GameObject submitButton;
+		public GameObject hintButton;
 		public GameObject helpText;
 		public GameObject levelText;
 		public GameObject scoreText;
+		public GameObject hud;
 
 		void Start()
 		{
