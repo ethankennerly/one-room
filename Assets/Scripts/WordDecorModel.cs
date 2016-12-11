@@ -29,6 +29,8 @@ namespace Finegamedesign.WordDecor
 		public string helpText = "";
 		public Referee referee = new Referee();
 		public int tutorLevel = 2;
+		public List<string> hintLetters = new List<string>();
+		private int hintIndex = 0;
 
 		public void Setup()
 		{
@@ -42,6 +44,7 @@ namespace Finegamedesign.WordDecor
 		public void PopulateGrid()
 		{
 			DataUtil.Clear(letters);
+			DataUtil.Clear(hintLetters);
 			DataUtil.Clear(isVisibles);
 			string[] row = levels[referee.levelNumber];
 			columnCount = StringUtil.ParseInt(row[columnsColumn]);
@@ -52,6 +55,7 @@ namespace Finegamedesign.WordDecor
 			string grid = row[gridColumn];
 			string letterText = DataUtil.Replace(grid, ";", "");
 			letters = DataUtil.SplitString(letterText);
+			hintLetters = DataUtil.SplitString(letterText);
 			int length = DataUtil.Length(letters);
 			for (int index = 0; index < length; index++)
 			{
@@ -59,6 +63,7 @@ namespace Finegamedesign.WordDecor
 			}
 			ResetSelected();
 			referee.MultiplyDifficulty(columnCount * rowCount);
+			referee.hintLabel = "HINT\n$" + referee.hintPoints;
 		}
 
 		private void ResetSelected()
@@ -66,19 +71,31 @@ namespace Finegamedesign.WordDecor
 			DataUtil.Clear(selectedIndexes);
 			DataUtil.Clear(selectedLetters);
 			isSelected = false;
+			hintIndex = 0;
+		}
+
+		public void Hint()
+		{
+			referee.Hint();
+			string nextLetter = DataUtil.SplitString(words[0])[hintIndex];
+			int letterIndex = hintLetters.IndexOf(nextLetter);
+			Select(letterIndex);
+
 		}
 
 		public void Select(int letterIndex)
 		{
-			referee.Select();
 			if (0 <= letterIndex)
 			{
+				referee.Select();
+				hintIndex++;
 				isVisibles[letterIndex] = !isVisibles[letterIndex];
 				if (!isVisibles[letterIndex])
 				{
 					string letter = letters[letterIndex];
 					selectedLetters.Add(letter);
 					selectedIndexes.Add(letterIndex);
+					hintLetters[letterIndex] = empty;
 					isSelected = true;
 					UpdateIsCorrect();
 					if (referee.isActive)
@@ -148,6 +165,7 @@ namespace Finegamedesign.WordDecor
 				{
 					int selectedIndex = selectedIndexes[index];
 					isVisibles[selectedIndex] = true;
+					hintLetters[selectedIndex] = letters[selectedIndex];
 				}
 			}
 			ResetSelected();

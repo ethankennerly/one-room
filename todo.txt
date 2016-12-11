@@ -52,6 +52,7 @@ TODO
 	Spell word.  Show word spelled.  Animate reward.
 	Selecting room costs money.
 	Selecting 3 or more letters costs money.
+	Hint selects next letter that is adjacent with other letters.
 	Restart.
 	Auto resize letter cells in grid.
 

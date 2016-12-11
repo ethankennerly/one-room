@@ -15,6 +15,7 @@ namespace Finegamedesign.WordDecor
 			model.levels = StringUtil.ParseCsv(csv);
 			model.Setup();
 			buttons.view.Listen(view.submitButton);
+			buttons.view.Listen(view.hintButton);
 			PopulateGrid();
 		}
 
@@ -55,6 +56,10 @@ namespace Finegamedesign.WordDecor
 			buttons.Update();
 			if (buttons.isAnyNow)
 			{
+				if (view.hintButton == buttons.view.target)
+				{
+					model.Hint();
+				}
 				if (view.submitButton == buttons.view.target)
 				{
 					model.Submit();
@@ -63,6 +68,7 @@ namespace Finegamedesign.WordDecor
 				model.Select(letterIndex);
 			}
 			SceneNodeView.SetVisible(view.submitButton, model.isSelected);
+			SceneNodeView.SetVisible(view.hintButton, model.referee.isActive);
 		}
 
 		private void UpdateLetters()
@@ -95,7 +101,7 @@ namespace Finegamedesign.WordDecor
 		private void UpdateText()
 		{
 			SceneNodeView.SetVisible(view.hud, model.referee.isActive || model.referee.isOver);
-			SceneNodeView.SetVisible(view.hintButton, false && model.referee.isActive);
+			TextView.SetText(view.hintLabel, model.referee.hintLabel);
 			TextView.SetText(view.helpText, model.helpText);
 			TextView.SetText(view.levelText, model.referee.levelText);
 			TextView.SetText(view.scoreText, model.referee.score.ToString());

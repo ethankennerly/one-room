@@ -19,6 +19,8 @@ namespace Finegamedesign.Utils
 		public int scorePerDuration = -1;
 		public int scorePerSelect = -10;
 		public int scorePerHint = -100;
+		public int hintPoints;
+		public string hintLabel;
 		public int scorePerCorrect = 20;
 		public int difficultyMultiplier = 1;
 		public float duration = 1.0f;
@@ -45,7 +47,7 @@ namespace Finegamedesign.Utils
 
 		public void Hint()
 		{
-			score += scorePerHint * difficultyMultiplier;
+			score += hintPoints;
 		}
 
 		public void Setup()
@@ -78,6 +80,7 @@ namespace Finegamedesign.Utils
 			{
 				difficultyMultiplier = 0;
 			}
+			hintPoints = scorePerHint * difficultyMultiplier;
 		}
 
 		public void Populate()
