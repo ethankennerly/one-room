@@ -20,11 +20,11 @@ DONE
 	2016-12-10 Jennifer Russ feels clear on score.  Why not just a timer?
 	2x2, 3x3, 3x4, 3x5, 4x4, 4x5, 4x6, 5x5, 5x6, 6x6
 	Read ROOM 1 of 100.
+	Hint selects next letter of next word.
+	Read selecting hint costs money by difficulty.
 
 TODO
 
-	Hint selects next letter of next word.
-	Read selecting hint costs money by difficulty.
 	Play WebGL and Android.
 	Submit to Ludum Dare.
 	Jennifer plays on Android Phone.
