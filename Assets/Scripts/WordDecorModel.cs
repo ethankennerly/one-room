@@ -109,7 +109,7 @@ namespace Finegamedesign.WordDecor
 					referee.isUpdateSeconds = levelIndex < levelCount - 1;
 					if (!referee.isUpdateSeconds)
 					{
-						helpText = "YOUR VOCABULARY OF DECORATING EARNED $" + referee.score + ",000!";
+						helpText = "YOUR DECORATING EARNED $" + referee.score + ",000!";
 					}
 				}
 				else

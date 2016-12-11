@@ -34,6 +34,8 @@ REFERENCE GAMES
 REFERENCE ACTIVITIES
 
 	http://www.housebeautiful.com/room-decorating/bedrooms/g648/beautiful-designer-bedrooms/
+	http://www.housebeautiful.com/home-remodeling/interior-designers/tips/g864/decorating-secrets/?slide=4
+
 
 JOURNAL
 
@@ -155,7 +157,9 @@ Start:  100
 Each second:  -1
 Each letter:  -10
 Each letter in word:  column x rows x 10
-Each hint:  -100
+Each hint:  -100 x column x rows
+
+
 
 
 
