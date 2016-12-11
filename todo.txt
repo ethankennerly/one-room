@@ -9,10 +9,10 @@ DONE
 
 TODO
 
+	Submit not a target word: show letters again.
 	Drag over letter.  Letter selected.
 		Mouse down to select letter.
 		Mouse up to submit word.
-	If not a target word, then show letters again.
 	Spell words.
 	Spell two words.
 	If word not in list then show message.

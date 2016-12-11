@@ -90,10 +90,6 @@ namespace Finegamedesign.WordDecor
 				{
 					levelIndex++;
 					isNext = levelIndex < levelCount;
-					if (isNext)
-					{
-						// PopulateGrid();
-					}
 				}
 			}
 			else
