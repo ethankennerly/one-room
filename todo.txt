@@ -22,6 +22,7 @@ DONE
 TODO
 
 	2x2, 3x3, 3x4, 4x5, 4x6
+	Reward ROOM 1 of 70.
 	Drag over letter.  Letter selected.
 		Mouse down to select letter.
 		Mouse up to submit word.
