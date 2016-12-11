@@ -95,6 +95,7 @@ namespace Finegamedesign.WordDecor
 		private void UpdateText()
 		{
 			TextView.SetText(view.helpText, model.helpText);
+			TextView.SetText(view.levelText, model.levelText);
 			TextView.SetText(view.scoreText, model.referee.score.ToString());
 		}
 	}

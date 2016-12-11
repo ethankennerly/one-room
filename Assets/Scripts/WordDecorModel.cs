@@ -30,11 +30,12 @@ namespace Finegamedesign.WordDecor
 		private int wordIndex = -1;
 		public string helpText = "";
 		public Referee referee = new Referee();
+		public string levelText = "";
 
 		public void Setup()
 		{
 			PopulateGrid();
-			helpText = "SPELL THE DECORATION FOR THIS ROOM";
+			helpText = "SPELL THIS ROOM'S DECORATION";
 			referee.Setup();
 		}
 
@@ -42,7 +43,8 @@ namespace Finegamedesign.WordDecor
 		{
 			DataUtil.Clear(letters);
 			DataUtil.Clear(isVisibles);
-			levelCount = DataUtil.Length(levels) - 1;
+			levelCount = DataUtil.Length(levels) - 2;
+			levelText = levelIndex + " of " + levelCount;
 			string[] row = levels[levelIndex];
 			columnCount = StringUtil.ParseInt(row[columnsColumn]);
 			rowCount = StringUtil.ParseInt(row[rowsColumn]);
@@ -58,7 +60,14 @@ namespace Finegamedesign.WordDecor
 				isVisibles.Add(true);
 			}
 			ResetSelected();
-			referee.MultiplyDifficulty(columnCount * rowCount);
+			if (levelIndex <= 2)
+			{
+				referee.MultiplyDifficulty(1);
+			}
+			else
+			{
+				referee.MultiplyDifficulty(columnCount * rowCount);
+			}
 		}
 
 		private void ResetSelected()
@@ -114,7 +123,7 @@ namespace Finegamedesign.WordDecor
 			if (isCorrect)
 			{
 				referee.Correct(wordLength);
-				if (0 < referee.difficultyMultiplier)
+				if (levelIndex <= levelCount)
 				{
 					helpText = "YOUR " + selectedWord + " PROFITED $" + referee.correctProfit + "!";
 				}

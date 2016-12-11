@@ -18,22 +18,18 @@ DONE
 	Jennifer played 6 grids.
 	2016-12-10 You Win.  Jennifer expects to take no action.
 	2016-12-10 Jennifer Russ feels clear on score.  Why not just a timer?
+	2x2, 3x3, 3x4, 3x5, 4x4, 4x5, 4x6, 5x5, 5x6, 6x6
+	Read ROOM 1 of 100.
 
 TODO
 
-	2x2, 3x3, 3x4, 4x5, 4x6
-	Reward ROOM 1 of 70.
-	Drag over letter.  Letter selected.
-		Mouse down to select letter.
-		Mouse up to submit word.
-	Spell word.  Show word spelled.  Animate reward.
+	Hint shows next letter of next word until all words.
+	Selecting hint costs money.
+	Submit to Ludum Dare.
 	Animate reward.  See next.
 	Select room.
 	Grid of rooms.
 	Bigger rooms cost more.
-	Hint shows next letter of next word until all words.
-	Selecting hint costs money.
-	Submit to Ludum Dare.
 	Color palette.
 	Crisp font.
 	See room.
@@ -48,6 +44,10 @@ TODO
 			https://docs.unity3d.com/ScriptReference/UI.Selectable.OnPointerEnter.html
 	If not enough money, room not available.
 	If not enough money for anything, message You're broke.
+	Drag over letter.  Letter selected.
+		Mouse down to select letter.
+		Mouse up to submit word.
+	Spell word.  Show word spelled.  Animate reward.
 	Selecting room costs money.
 	Selecting 3 or more letters costs money.
 	Restart.
