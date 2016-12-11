@@ -25,6 +25,7 @@ namespace Finegamedesign.WordDecor
 		public int rowCount = -1;
 		public string gridName;
 		public bool isNext;
+		public bool isSelected;
 		public bool isCorrect;
 		private int wordIndex = -1;
 		public string helpText = "";
@@ -41,7 +42,7 @@ namespace Finegamedesign.WordDecor
 		{
 			DataUtil.Clear(letters);
 			DataUtil.Clear(isVisibles);
-			levelCount = DataUtil.Length(levels);
+			levelCount = DataUtil.Length(levels) - 1;
 			string[] row = levels[levelIndex];
 			columnCount = StringUtil.ParseInt(row[columnsColumn]);
 			rowCount = StringUtil.ParseInt(row[rowsColumn]);
@@ -64,6 +65,7 @@ namespace Finegamedesign.WordDecor
 		{
 			DataUtil.Clear(selectedIndexes);
 			DataUtil.Clear(selectedLetters);
+			isSelected = false;
 		}
 
 		public void Select(int letterIndex)
@@ -77,8 +79,9 @@ namespace Finegamedesign.WordDecor
 					string letter = letters[letterIndex];
 					selectedLetters.Add(letter);
 					selectedIndexes.Add(letterIndex);
+					isSelected = true;
 					UpdateIsCorrect();
-					helpText = "COST $" + referee.selectProfit + "K FOR \"" + selectedWord + "\"";
+					helpText = "COST $" + referee.selectProfit + " FOR \"" + selectedWord + "\"";
 					if (isCorrect)
 					{
 						Submit();
@@ -107,30 +110,31 @@ namespace Finegamedesign.WordDecor
 				return isNext;
 			}
 			UpdateIsCorrect();
+			isSelected = false;
 			if (isCorrect)
 			{
 				referee.Correct(wordLength);
 				if (0 < referee.difficultyMultiplier)
 				{
-					helpText = "YOUR " + selectedWord + " PROFITED $" + referee.correctProfit + "K!";
+					helpText = "YOUR " + selectedWord + " PROFITED $" + referee.correctProfit + "!";
 				}
 				else
 				{
-					helpText = "YOUR DECORATING EARNED $" + referee.score + "K!";
+					helpText = "YOUR DECORATING EARNED $" + referee.score + "!";
 				}
 				DataUtil.RemoveAt(words, wordIndex);
 				if (DataUtil.Length(words) <= 0)
 				{
 					levelIndex++;
-					isNext = levelIndex < levelCount;
-					referee.isUpdateSeconds = levelIndex < levelCount - 1;
+					isNext = levelIndex <= levelCount;
+					referee.isUpdateSeconds = levelIndex < levelCount;
 					if (referee.isUpdateSeconds)
 					{
 						// helpText = selectedWord + ", NICE!";
 					}
 					else
 					{
-						helpText = "YOUR DECORATING EARNED $" + referee.score + "K!";
+						helpText = "YOUR DECORATING EARNED $" + referee.score + "!";
 					}
 				}
 			}

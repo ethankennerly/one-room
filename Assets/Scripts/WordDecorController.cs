@@ -62,6 +62,7 @@ namespace Finegamedesign.WordDecor
 				int letterIndex = view.letterButtons.IndexOf(buttons.view.target);
 				model.Select(letterIndex);
 			}
+			SceneNodeView.SetVisible(view.submitButton, model.isSelected);
 		}
 
 		private void UpdateLetters()
@@ -69,8 +70,14 @@ namespace Finegamedesign.WordDecor
 			int length = DataUtil.Length(model.letters);
 			for (int index = 0; index < length; index++)
 			{
-				TextView.SetText(view.letterTexts[index], model.letters[index]);
-				SceneNodeView.SetVisible(view.letterButtons[index], model.isVisibles[index]);
+				if (index < DataUtil.Length(view.letterTexts))
+				{
+					TextView.SetText(view.letterTexts[index], model.letters[index]);
+				}
+				if (index < DataUtil.Length(view.letterButtons))
+				{
+					SceneNodeView.SetVisible(view.letterButtons[index], model.isVisibles[index]);
+				}
 			}
 		}
 
